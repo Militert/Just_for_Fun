@@ -18,4 +18,5 @@ print(my_favorite_movies[:my_favorite_movies.find(',')])
 print(my_favorite_movies[my_favorite_movies.rfind(',') + 2:])
 print(my_favorite_movies[my_favorite_movies.find(',') + 2:
                          my_favorite_movies.find(',', my_favorite_movies.find(',') + 1)])
-print(my_favorite_movies[my_favorite_movies.rfind(','):])
+print(my_favorite_movies[my_favorite_movies.rfind(',', 0, my_favorite_movies.rfind(',')) +
+                         2:my_favorite_movies.rfind(',')])

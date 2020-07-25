@@ -9,6 +9,10 @@
 # Формат вывода:
 #   Студенту надо попросить ХХХ.ХХ рублей
 
-educational_grant, expenses = 10000, 12000
+educational_grant, expenses, month = 10000, 12000, 0
 
-# TODO здесь ваш код
+while month < 10:
+    month += 1
+    expenses *= 1.03
+else:
+    print(f"Студенту надо попросить {1} рублей")

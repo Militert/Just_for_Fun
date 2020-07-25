@@ -11,8 +11,11 @@
 
 educational_grant, expenses, month = 10000, 12000, 0
 
-while month < 10:
+while month < 9:
     month += 1
-    expenses *= 1.03
+    expenses += 12000 * 1.03
+    educational_grant += 10000
 else:
-    print(f"Студенту надо попросить {1} рублей")
+    expenses += 12000
+    educational_grant += 10000
+    print(f"Студенту надо попросить {expenses - educational_grant} рублей")

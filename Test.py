@@ -1,5 +1,3 @@
-import simple_draw as sd
-import random
-
-
-print(random.random()*100)
+angle = 90
+for figure in range(360//angle):
+    print(360//angle)

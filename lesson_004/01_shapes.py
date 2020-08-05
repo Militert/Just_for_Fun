@@ -27,8 +27,58 @@ import simple_draw as sd
 # sd.line()
 # Результат решения см lesson_004/results/exercise_01_shapes.jpg
 
-# TODO здесь ваш код
 
+# def triangle(start_point, length, angle=120):
+#     v1 = sd.get_vector(start_point=start_point, angle=0, length=length, width=2)
+#     v1.draw()
+#     v2 = sd.get_vector(start_point=v1.end_point, angle=angle, length=length, width=2)
+#     v2.draw()
+#     v3 = sd.get_vector(start_point=v2.end_point, angle=angle * 2, length=length, width=2)
+#     v3.draw()
+#
+#
+# triangle(start_point=sd.get_point(300, 300), length=200)
+#
+# def square(start_point, length, angle=90):
+#     v1 = sd.get_vector(start_point=start_point, angle=0, length=length, width=2)
+#     v1.draw()
+#     v2 = sd.get_vector(start_point=v1.end_point, angle=angle, length=length, width=2)
+#     v2.draw()
+#     v3 = sd.get_vector(start_point=v2.end_point, angle=angle * 2, length=length, width=2)
+#     v3.draw()
+#     v4 = sd.get_vector(start_point=v3.end_point, angle=angle * 3, length=length, width=2)
+#     v4.draw()
+#
+#
+# def pentagon(start_point, length, angle=72):
+#     v1 = sd.get_vector(start_point=start_point, angle=0, length=length, width=2)
+#     v1.draw()
+#     v2 = sd.get_vector(start_point=v1.end_point, angle=angle, length=length, width=2)
+#     v2.draw()
+#     v3 = sd.get_vector(start_point=v2.end_point, angle=angle * 2, length=length, width=2)
+#     v3.draw()
+#     v4 = sd.get_vector(start_point=v3.end_point, angle=angle * 3, length=length, width=2)
+#     v4.draw()
+#     v5 = sd.get_vector(start_point=v4.end_point, angle=angle * 4, length=length, width=2)
+#     v5.draw()
+#
+#
+# def hexagon(start_point, length, angle=60):
+#     v1 = sd.get_vector(start_point=start_point, angle=0, length=length, width=2)
+#     v1.draw()
+#     v2 = sd.get_vector(start_point=v1.end_point, angle=angle, length=length, width=2)
+#     v2.draw()
+#     v3 = sd.get_vector(start_point=v2.end_point, angle=angle * 2, length=length, width=2)
+#     v3.draw()
+#     v4 = sd.get_vector(start_point=v3.end_point, angle=angle * 3, length=length, width=2)
+#     v4.draw()
+#     v5 = sd.get_vector(start_point=v4.end_point, angle=angle * 4, length=length, width=2)
+#     v5.draw()
+#     v6 = sd.get_vector(start_point=v5.end_point, angle=angle * 5, length=length, width=2)
+#     v6.draw()
+#
+#
+# hexagon(start_point=sd.get_point(200, 200), length=200)
 # Часть 1-бис.
 # Попробуйте прикинуть обьем работы, если нужно будет внести изменения в этот код.
 # Скажем, связывать точки не линиями, а дугами. Или двойными линиями. Или рисовать круги в угловых точках. Или...
@@ -46,6 +96,21 @@ import simple_draw as sd
 #
 # Не забудте в этой общей функции придумать, как устранить разрыв
 #   в начальной/конечной точках рисуемой фигуры (если он есть)
+
+
+def figure_draw(start_point, length, width, angle=90):
+    first = sd.get_vector(start_point=start_point, angle=0, length=length, width=width)
+    first.draw()
+    print(first.end_point)
+    for figure in range(360//angle-1):
+        second = sd.get_vector(start_point=first.end_point, angle=angle * (figure + 1), length=length, width=width)
+        second.draw()
+        first = second
+        print(first.end_point)
+
+
+figure_draw(start_point=sd.get_point(300, 300), angle=60, length=100, width=2)
+
 
 # Часть 2-бис.
 # А теперь - сколько надо работы что бы внести изменения в код? Выгода на лицо :)

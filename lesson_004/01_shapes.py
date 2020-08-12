@@ -108,8 +108,11 @@ def figure_draw(start_point, length, width, angle=90):
         first = second
         print(first.end_point)
 
+    last = sd.get_vector(start_point=first.end_point, angle=-angle, length=2, width=2)
+    last.draw(color=(0, 8, 98))
 
-figure_draw(start_point=sd.get_point(300, 300), angle=60, length=100, width=2)
+
+figure_draw(start_point=sd.get_point(300, 300), angle=90, length=100, width=2)
 
 
 # Часть 2-бис.

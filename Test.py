@@ -1,3 +1,5 @@
-angle = 90
-for figure in range(360//angle):
-    print(360//angle)
+import simple_draw as sd
+
+a = sd.COLOR_DARK_BLUE
+
+print()

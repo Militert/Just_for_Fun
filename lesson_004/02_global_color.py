@@ -17,6 +17,7 @@ import simple_draw as sd
 dict_of_color = {0: [sd.COLOR_RED, "RED"], 1: [sd.COLOR_ORANGE, "ORANGE"], 2: [sd.COLOR_YELLOW, "YELLOW"],
                  3: [sd.COLOR_GREEN, "GREEN"], 4: [sd.COLOR_CYAN, "CYAN"], 5: [sd.COLOR_BLUE, "BLUE"],
                  6: [sd.COLOR_PURPLE, "PURPLE"]}
+print('Возможные цвета:')
 for key, val in enumerate(dict_of_color.values()):
     print(f'{key} : {val[1]}')
 while True:
@@ -36,9 +37,6 @@ def figure_draw(start_point, length, width, color, angle=90):
         second.draw(color=color)
         first = second
         print(first.end_point)
-
-    last = sd.get_vector(start_point=first.end_point, angle=-angle, length=1, width=2)
-    last.draw(color=(0, 8, 98))
 
 
 figure_draw(start_point=sd.get_point(300, 300), angle=72, length=100, color=dict_of_color[user_color][0], width=2)

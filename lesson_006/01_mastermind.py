@@ -43,4 +43,20 @@
 # Это пример применения SOLID принципа (см https://goo.gl/GFMoaI) в архитектуре программ.
 # Точнее, в этом случае важен принцип единственной ответственности - https://goo.gl/rYb3hT
 
-# TODO здесь ваш код...
+from mastermind_engine import rand_4_number, guess_number, game_over
+from termcolor import cprint
+
+while True:
+    rand_4_number()
+    while True:
+        user_input = input('Введите 4х значное число: ')
+        cprint(guess_number(user_number=user_input), color='green')
+        if game_over(user_number=user_input):
+            break
+    one_more = input()
+    if one_more == 'Нет' or one_more == 'нет' or one_more == 'No' or one_more == 'no' or one_more == 'n':
+        break
+    elif one_more == 'Да' or one_more == 'да' or one_more == 'Yes' or one_more == 'yes' or one_more == 'y':
+        continue
+    else:
+        one_more = input('Хотите попробовать еще раз?(Да/Нет)')

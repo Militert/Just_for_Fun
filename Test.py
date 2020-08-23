@@ -1,5 +1,4 @@
-import simple_draw as sd
+guess = {'Быки': 5, 'Коровы': 6}
 
-a = sd.COLOR_DARK_BLUE
-
-print()
+for oxs, numb in guess.items():
+    print(f'{oxs} - {numb}')

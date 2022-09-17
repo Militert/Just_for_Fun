@@ -35,8 +35,6 @@ module_2.function2()
 
 ###
 # наиболее общеупотребительные способы
-from package_1.module_1 import function1
-from package_1.subpackage import module_2
 
 ###
 # Если есть код в __init__.py, то он импортируется напрямую
@@ -105,5 +103,3 @@ function5()
 # └── generic
 
 # пример использования
-from django.db.models import Manager
-from django.urls import reverse

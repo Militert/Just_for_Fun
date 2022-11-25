@@ -25,7 +25,7 @@ class CryptoConverter:
             raise APIException(f'Не удалось обработать валюту {base}.')
 
         try:
-            amount = float(amount)
+            amount = float(amount.replace(',', '.'))
         except ValueError:
             raise APIException(f'Не удалось обработать количество {amount}.')
 

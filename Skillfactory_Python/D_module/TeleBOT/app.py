@@ -44,7 +44,8 @@ def convert(message: telebot.types.Message):
     except Exception as e:
         bot.reply_to(message, f'Не удалось обработать команду.\n{e}')
     else:
-        text = f'Цена: {amount} {MorphAnalyzer().parse(quote)[0].make_agree_with_number(float(amount)).word}' \
+        text = f'Цена: {amount} ' \
+               f'{MorphAnalyzer().parse(quote)[0].make_agree_with_number(float(amount.replace(",", "."))).word}' \
                f' в {MorphAnalyzer().parse(base)[0].inflect({"plur", "loct"})[0]} - {total_base}'
         bot.send_message(message.chat.id, text)
         print(f'{strftime("%H:%M:%S")}\t{message.chat.first_name} {message.chat.last_name}'

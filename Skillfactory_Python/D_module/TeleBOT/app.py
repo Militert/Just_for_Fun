@@ -1,6 +1,8 @@
 import telebot
 from pymorphy2 import MorphAnalyzer
 
+from time import strftime
+
 from config import currencies, TELEGRAM_TOKEN
 from extensions import APIException, CryptoConverter
 
@@ -26,7 +28,7 @@ def values(message: telebot.types.Message):
 @bot.message_handler(content_types=['text'])
 def convert(message: telebot.types.Message):
     try:
-        values = message.text.split()
+        values = message.text.lower().split()
 
         if len(values) > 3:
             raise APIException('Слишком много аргументов.')
@@ -40,12 +42,14 @@ def convert(message: telebot.types.Message):
     except Exception as e:
         bot.reply_to(message, f'Не удалось обработать команду.\n{e}')
     else:
-        text = f'Цена {amount} {MorphAnalyzer().parse(quote)[0].make_agree_with_number(int(amount)).word}' \
+        text = f'Цена: {amount} {MorphAnalyzer().parse(quote)[0].make_agree_with_number(float(amount)).word}' \
                f' в {MorphAnalyzer().parse(base)[0].inflect({"plur", "loct"})[0]} - {total_base}'
         bot.send_message(message.chat.id, text)
+        print(f'{strftime("%H:%M:%S")}\t{message.chat.first_name} {message.chat.last_name}'
+              f'({message.chat.username}) конвертировал валюту.')
 
 
 if __name__ == '__main__':
-    print(f'Bot запущен...')
+    print(f'{strftime("%H:%M:%S")}\tBot запущен...')
     bot.polling(none_stop=True)
-    print(f'Bot отключён...')
+    print(f'{strftime("%H:%M:%S")}\tBot отключён...')

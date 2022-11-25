@@ -1,7 +1,8 @@
 import telebot
+from pymorphy2 import MorphAnalyzer
 
 from config import currencies, TELEGRAM_TOKEN
-from utils import ConversionException, CryptoConverter
+from extensions import APIException, CryptoConverter
 
 
 bot = telebot.TeleBot(token=TELEGRAM_TOKEN)
@@ -18,7 +19,7 @@ def help(message: telebot.types.Message):
 def values(message: telebot.types.Message):
     text = 'Доступные валюты:'
     for key in currencies.keys():
-        text = '\n'.join((text, key))
+        text = '\n'.join((text, key.capitalize()))
     bot.send_message(message.chat.id, text)
 
 
@@ -27,17 +28,20 @@ def convert(message: telebot.types.Message):
     try:
         values = message.text.split()
 
-        if len(values) != 3:
-            raise ConversionException('Слишком много аргументов.')
+        if len(values) > 3:
+            raise APIException('Слишком много аргументов.')
+        elif len(values) < 3:
+            raise APIException('Слишком мало аргументов.')
 
         quote, base, amount = values
-        total_base = CryptoConverter.converter(quote, base, amount)
-    except ConversionException as e:
+        total_base = CryptoConverter.get_price(quote, base, amount)
+    except APIException as e:
         bot.reply_to(message, f'Ошибка пользователя.\n{e}')
     except Exception as e:
         bot.reply_to(message, f'Не удалось обработать команду.\n{e}')
     else:
-        text = f'Цена {amount} {quote} в {base} - {total_base}'
+        text = f'Цена {amount} {MorphAnalyzer().parse(quote)[0].make_agree_with_number(int(amount)).word}' \
+               f' в {MorphAnalyzer().parse(base)[0].inflect({"plur", "loct"})[0]} - {total_base}'
         bot.send_message(message.chat.id, text)
 
 

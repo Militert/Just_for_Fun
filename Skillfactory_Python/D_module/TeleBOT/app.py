@@ -23,6 +23,8 @@ def values(message: telebot.types.Message):
     for key in currencies.keys():
         text = '\n'.join((text, key.capitalize()))
     bot.send_message(message.chat.id, text)
+    print(f'{strftime("%H:%M:%S")}\t{message.chat.first_name} {message.chat.last_name}'
+          f'({message.chat.username}) запросил список доступных валют.')
 
 
 @bot.message_handler(content_types=['text'])

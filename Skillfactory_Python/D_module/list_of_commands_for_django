@@ -1,0 +1,16 @@
+python manage.py runserver - запускает сервер
+python manage.py migrate  - настраиваем миграции
+python manage.py createsuperuser - создание администратора
+
+Для добавления к проекту статичных страниц в settings(INSTALLED_APPS) необходимо добавить следующие строки:
+    'django.contrib.sites',
+    'django.contrib.flatpages',
+
+Так же для статичных страниц в settings необходимо добавить константу:
+SITE_ID = 1
+
+А в settings(MIDDLEWARE) добавить строку
+    'django.contrib.flatpages.middleware.FlatpageFallbackMiddleware',
+
+Для доступа по ссылке к страничке необходимо добавить в urls(urlpatterns)
+path('pages/', include('django.contrib.flatpages.urls'))

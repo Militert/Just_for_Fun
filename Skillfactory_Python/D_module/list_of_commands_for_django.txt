@@ -14,3 +14,10 @@ SITE_ID = 1
 
 Для доступа по ссылке к страничке необходимо добавить в urls(urlpatterns)
 path('pages/', include('django.contrib.flatpages.urls'))
+
+Для добавления в HTML кода из админки по адресу странички необходимо добавить:
+{{ flatpage.title }}
+{{ flatpage.content }}
+
+Для добавления одного шаблона в другой используем:
+{% include …. %}

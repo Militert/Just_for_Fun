@@ -21,3 +21,12 @@ path('pages/', include('django.contrib.flatpages.urls'))
 
 Для добавления одного шаблона в другой используем:
 {% include …. %}
+
+
+В HTML файле, куда необходимо добавить содержание пишем:
+{% block title %} {% endblock title %}
+{% block content %} {% endblock content %}
+
+Из файла откуда будет подтягиваться инфа необходимо добавить:
+{% extends 'flatpages/default.html' %}
+{% block title %} {{ flatpage.title }} {% endblock title %} и тд.

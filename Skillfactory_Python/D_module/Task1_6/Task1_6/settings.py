@@ -41,6 +41,9 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     'django.contrib.flatpages',
     'fpages',
+    'accounts',
+    'mc_donalds',
+    'news'
 ]
 
 SITE_ID = 1
@@ -76,7 +79,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'Task1_6.wsgi.application'
-
 
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
@@ -117,7 +119,7 @@ TIME_ZONE = 'UTC'
 
 USE_I18N = True
 
-USE_TZ = True
+USE_TZ = False
 
 
 # Static files (CSS, JavaScript, Images)

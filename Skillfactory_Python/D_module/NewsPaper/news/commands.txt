@@ -1,0 +1,37 @@
+from news.models import *
+
+user1 = User.objects.create_user('Максим')
+user2 = User.objects.create_user('Андрей')
+user3 = User.objects.create_user('Виктория')
+user4 = User.objects.create_user('Юлия')
+user5 = User.objects.create_user('Иван')
+user6 = User.objects.create_user('Рамиль')
+user7 = User.objects.create_user('Артём')
+user8 = User.objects.create_user('Кирилл')
+
+author1 = Author.objects.create(user=user1)
+author2 = Author.objects.create(user=user2)
+
+category1 = Category.objects.create(news_category='PO')
+category2 = Category.objects.create(news_category='EC')
+category3 = Category.objects.create(news_category='SP')
+category4 = Category.objects.create(news_category='SC')
+
+article1 = Post.objects.create(author=author1, post_type='SP', title='Федор Емельяненко оказался тяжелее Бейдера перед титульным боем Bellator', text='Российский боец смешанных единоборств (ММА) Федор Емельяненко оказался тяжелее своего соперника по титульному поединку за чемпионский пояс Bellator в тяжелом весе американца Райана Бейдера, сообщается в Twitter промоушена.\n Бой Емельяненко за чемпионский пояс в тяжелом весе, которым владеет Бейдер, пройдет в Лос-Анджелесе 4 февраля в рамках турнира Bellator 290. Ранее 46-летний россиянин заявил, что этот поединок будет последним в его профессиональной карьере.')
+article2 = Post.objects.create(author=author2, post_type='SP', title='Порошкин выиграл индивидуальную гонку на этапе Кубка России', text='Лыжник Илья Порошкин победил в индивидуальной гонке на 15 км классическим ходом на седьмом этапе Кубка России в подмосковном Красногорске.\nПорошкин пробежал дистанцию за 36 минут 17,2 секунды.\nВторое место занял Сергей Ардашев с отставанием в 12,7 секунды, третьим стал Антон Тимашов (+33,2).\nЛидеры сборной России пропускают этап ради подготовки к основным стартам сезона.')
+news1 = Post.objects.create(author=author1, post_type='EC', title='Страны ЕС согласовали потолок цен на российские нефтепродукты', text='Страны Евросоюза согласовали лимит цен на российские нефтепродукты, сообщило шведское председательство в Совете ЕС в Twitter.\nКак сообщило агентство Рейтер со ссылкой на дипломатов, лимит установят на уровне 100 долларов за баррель на нефтепродукты, торгующиеся с премией, и 45 долларов — со скидкой.')
+article1 = Post.objects.create(author=author1, post_type='EN', title='Федор Емельяненко оказался тяжелее Бейдера перед титульным боем Bellator', text='Российский боец смешанных единоборств (ММА) Федор Емельяненко оказался тяжелее своего соперника по титульному поединку за чемпионский пояс Bellator в тяжелом весе американца Райана Бейдера, сообщается в Twitter промоушена.\n Бой Емельяненко за чемпионский пояс в тяжелом весе, которым владеет Бейдер, пройдет в Лос-Анджелесе 4 февраля в рамках турнира Bellator 290. Ранее 46-летний россиянин заявил, что этот поединок будет последним в его профессиональной карьере.')
+
+comment_a1 = Comment.objects.create(post=article1, user=user3, comment_text='Классная статья!', comment_rating = 10)
+comment_a1 = Comment.objects.create(post=article1, user=user3, comment_text='Ого! Что-то интересное)', comment_rating = 6)
+comment_a2 = Comment.objects.create(post=article2, user=user4, comment_text='Классная статья!', comment_rating = 8)
+comment_n1 = Comment.objects.create(post=news1, user=user5, comment_text='Классная статья!', comment_rating = 3)
+
+comment_a1.like()
+comment_a2.like()
+comment_n1.dislike()
+article1.like()
+news1.dislike()
+
+Не разобрался с тем как написать обновление рейтинга для пользователей
+
